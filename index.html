@@ -3,117 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Cassie ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <title>A Message for My Favorite Person ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --romantic-bg: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            --funny-bg: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            --success-bg: linear-gradient(to right, #ff006e, #8338ec);
+            --heart-color: #d63384;
+        }
+
         body {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100-vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            background: var(--romantic-bg);
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            overflow: hidden;
+            transition: background 0.5s ease;
+            overflow-x: hidden;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 90%;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 90%;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            color: #d63384;
+            color: var(--heart-color);
             font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
             margin-bottom: 2rem;
         }
 
-        .buttons {
+        .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         button {
-            padding: 12px 30px;
-            font-size: 1.2rem;
+            padding: 12px 35px;
+            font-size: 1.1rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
+            transition: all 0.3s ease;
             font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .yes-btn {
-            background-color: #ff4d6d;
-            color: white;
-        }
+        .btn-yes { background-color: #ff4d6d; color: white; }
+        .btn-yes:hover { transform: scale(1.1); background-color: #ff758f; }
 
-        .yes-btn:hover {
-            background-color: #ff758f;
-            transform: scale(1.1);
-        }
+        .btn-no { background-color: #6c757d; color: white; }
 
-        .no-btn {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        /* Celebration Styles */
         .hidden { display: none; }
         
-        .celebration h1 { color: #ff006e; }
-        .confetti { font-size: 3rem; margin: 10px; }
+        .emoji-large { font-size: 4rem; margin-bottom: 1rem; }
     </style>
 </head>
 <body>
 
-    <!-- Main Question Page -->
-    <div id="question-page" class="container">
-        <h1>Hey Cassie, will you be my girlfriend? 🌹</h1>
-        <div class="buttons">
-            <button class="yes-btn" onclick="showCelebration()">Yes!</button>
-            <button class="no-btn" onclick="showFunny()">No</button>
+    <!-- STAGE 1: THE LOVE QUESTION -->
+    <div id="stage1" class="container">
+        <div class="emoji-large">✨</div>
+        <h1>Hey Cassie, my beautiful angel...</h1>
+        <p>I’ve been carrying a little secret in my heart for a while now. Before we go any further, I just have to know one thing: <strong>Do you love me?</strong></p>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="toStage2()">Yes, I do! ❤️</button>
+            <button class="btn-no" onclick="toFunnyNo1()">No 💔</button>
         </div>
     </div>
 
-    <!-- Success Page -->
-    <div id="success-page" class="container hidden celebration">
-        <h1>Congratulations! 🎉</h1>
-        <p style="font-size: 1.5rem; color: #555;">You are now officially Jesse's girl! ❤️</p>
-        <div class="confetti">🥳💖✨👑</div>
+    <!-- FUNNY NO 1: SORRY GIRL -->
+    <div id="funny-no-1" class="container hidden">
+        <div class="emoji-large">🤣</div>
+        <h1>Error 404: Answer Not Found!</h1>
+        <p>Nice try, girl! But you see, Jesse loves you from the deepest depths of his heart, and the universe simply won't allow a 'No' today. Try again! 💅✨</p>
+        <button class="btn-yes" onclick="backToStage1()">Okay, okay! Let me try again...</button>
     </div>
 
-    <!-- Funny "No" Page -->
-    <div id="funny-page" class="container hidden">
-        <h1>Nice try! 😂</h1>
-        <p style="font-size: 1.5rem; color: #555;">Sorry, you can't say no giirlll! 💅✨</p>
-        <button class="yes-btn" style="margin-top: 20px;" onclick="showQuestion()">Try again (Say Yes 😉)</button>
+    <!-- STAGE 2: THE BIG QUESTION -->
+    <div id="stage2" class="container hidden">
+        <div class="emoji-large">🌹</div>
+        <h1>My Dearest Cassie,</h1>
+        <p>Since the feeling is mutual and my heart beats only for you, I want to make things official. Because you love Jesse and Jesse loves you, I want to ask: <strong>Will you be my girlfriend and make me the happiest man alive?</strong></p>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="toCelebration()">Yes, a thousand times! 💍</button>
+            <button class="btn-no" onclick="toFunnyNo2()">No, I'm shy...</button>
+        </div>
+    </div>
+
+    <!-- FUNNY NO 2: CANT SAY NO -->
+    <div id="funny-no-2" class="container hidden">
+        <div class="emoji-large">🙅‍♀️</div>
+        <h1>Hold up, Babygirl!</h1>
+        <p>Your finger must have slipped! 😂 You can't say no to this much charm and devotion. It’s written in the stars (and in this code). Go back and click the right button! 💖✨</p>
+        <button class="btn-yes" onclick="backToStage2()">Oops, my bad! (Say Yes 😉)</button>
+    </div>
+
+    <!-- FINAL STAGE: CONGRATULATIONS -->
+    <div id="celebration" class="container hidden">
+        <div class="emoji-large">🎉🥂✨</div>
+        <h1>It’s Official!</h1>
+        <p>Congratulations, Cassie! You are now officially <strong>Jesse's Girl</strong>. Get ready for a lifetime of laughs, endless love, and all the happiness you deserve. I can't wait for our journey together! ❤️</p>
+        <div style="font-size: 2rem;">💖✨👑💑</div>
     </div>
 
     <script>
-        function showCelebration() {
-            document.getElementById('question-page').classList.add('hidden');
-            document.getElementById('funny-page').classList.add('hidden');
-            document.getElementById('success-page').classList.remove('hidden');
-            document.body.style.background = "linear-gradient(to right, #ff006e, #8338ec)";
+        function toStage2() {
+            hideAll();
+            document.getElementById('stage2').classList.remove('hidden');
+            document.body.style.background = "var(--romantic-bg)";
         }
 
-        function showFunny() {
-            document.getElementById('question-page').classList.add('hidden');
-            document.getElementById('funny-page').classList.remove('hidden');
+        function toFunnyNo1() {
+            hideAll();
+            document.getElementById('funny-no-1').classList.remove('hidden');
+            document.body.style.background = "var(--funny-bg)";
         }
 
-        function showQuestion() {
-            document.getElementById('funny-page').classList.add('hidden');
-            document.getElementById('question-page').classList.remove('hidden');
+        function toFunnyNo2() {
+            hideAll();
+            document.getElementById('funny-no-2').classList.remove('hidden');
+            document.body.style.background = "var(--funny-bg)";
+        }
+
+        function toCelebration() {
+            hideAll();
+            document.getElementById('celebration').classList.remove('hidden');
+            document.body.style.background = "var(--success-bg)";
+        }
+
+        function backToStage1() {
+            hideAll();
+            document.getElementById('stage1').classList.remove('hidden');
+            document.body.style.background = "var(--romantic-bg)";
+        }
+
+        function backToStage2() {
+            hideAll();
+            document.getElementById('stage2').classList.remove('hidden');
+            document.body.style.background = "var(--romantic-bg)";
+        }
+
+        function hideAll() {
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(c => c.classList.add('hidden'));
         }
     </script>
 </body>
